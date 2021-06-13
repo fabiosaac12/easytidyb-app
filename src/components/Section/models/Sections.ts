@@ -1,0 +1,1 @@
+export type Sections = 'sales' | 'clients' | 'products' | 'orders' | 'suppliers'
