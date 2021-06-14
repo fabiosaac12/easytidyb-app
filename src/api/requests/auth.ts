@@ -16,12 +16,14 @@ export const login = async (loginData: LoginData) => {
 
 export const refresh = async () => {
   const refreshToken = await getItem('refresh_token');
-  const response = await auth.post<RefreshResponse>('/refreshToken', { refreshToken });
+  const response = await auth.post<RefreshResponse>('/refreshToken', {
+    refreshToken,
+  });
   const { accessToken } = response.data;
 
   await setItem('access_token', accessToken);
 
-  return accessToken; 
+  return accessToken;
 };
 
 export const logout = async () => {

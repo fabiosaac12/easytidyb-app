@@ -12,7 +12,7 @@ export const dark = {
       600: '#757575',
       700: '#616161',
       800: '#424242',
-      900: '#212121'
+      900: '#212121',
     },
     white: '#fcfcfc',
     black: '#282828',
@@ -25,7 +25,7 @@ export const dark = {
       600: '#239692',
       700: '#1d8a86',
       800: '#167d79',
-      900: '#11706c'
+      900: '#11706c',
     },
     secondary: {
       100: '#f874fc',
@@ -36,7 +36,7 @@ export const dark = {
       600: '#b939bd',
       700: '#af32b3',
       800: '#a42aa8',
-      900: '#931e96'
+      900: '#931e96',
     },
     background: {
       100: '#1c1c1c',
@@ -47,7 +47,7 @@ export const dark = {
       600: '#3d3d3d',
       700: '#383838',
       800: '#3b3b3b',
-      900: '#454545'
+      900: '#454545',
     },
     contrast: {
       100: '#fcfcfc',
@@ -58,12 +58,12 @@ export const dark = {
       600: '#e8e8e8',
       700: '#e3e3e3',
       800: '#dedede',
-      900: '#d9d9d9'
+      900: '#d9d9d9',
     },
     text: {
       primary: '#fcfcfc',
       secondary: '#f1f1f1',
-      button: '#fcfcfc'
+      button: '#fcfcfc',
     },
   },
 };

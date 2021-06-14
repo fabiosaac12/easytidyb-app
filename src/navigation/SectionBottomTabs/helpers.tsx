@@ -4,7 +4,10 @@ import { Text } from '../../components/Theme';
 import { SectionBottomTabsProps } from './SectionBottomTabs';
 import { useStyles } from './SectionBottomTabsStyles';
 
-export const getTabBarIcon = (route: keyof SectionBottomTabsProps, color: string) => {
+export const getTabBarIcon = (
+  route: keyof SectionBottomTabsProps,
+  color: string,
+) => {
   let icon: string;
 
   switch (route) {
@@ -26,11 +29,14 @@ export const getTabBarIcon = (route: keyof SectionBottomTabsProps, color: string
   }
 
   return <Icon name={icon} size={25} color={color} />;
-}
+};
 
-export const getTabBarLabel = (route: keyof SectionBottomTabsProps, color: string) => {
+export const getTabBarLabel = (
+  route: keyof SectionBottomTabsProps,
+  color: string,
+) => {
   const style = useStyles();
-  
+
   let label: string;
 
   switch (route) {
@@ -56,4 +62,4 @@ export const getTabBarLabel = (route: keyof SectionBottomTabsProps, color: strin
       {label}
     </Text>
   );
-}
+};

@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const getSales = gql`
   query getSales($userId: ID!) {
@@ -12,4 +12,4 @@ export const getSales = gql`
       }
     }
   }
-`
+`;

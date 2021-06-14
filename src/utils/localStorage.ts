@@ -6,7 +6,7 @@ export const getItem = async (key: string) => {
 
     return value;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -16,10 +16,10 @@ export const setItem = async (key: string, value: string) => {
 
     return true;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
-  return false
+  return false;
 };
 
 export const removeItem = async (key: string) => {
@@ -28,8 +28,8 @@ export const removeItem = async (key: string) => {
 
     return true;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
-  return false
+  return false;
 };

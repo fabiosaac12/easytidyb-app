@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  login as apiLogin,
-  logout as apiLogout
-} from '../../../api';
+import { login as apiLogin, logout as apiLogout } from '../../../api';
 import { AuthContext, AuthContextProps } from './AuthContext';
 import { useLoader } from '../../Loader';
 import { useSnackbar } from '../../Snackbar';
@@ -43,7 +40,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const contextValue: AuthContextProps = {
     login,
     logout,
-    user
+    user,
   };
 
   return (

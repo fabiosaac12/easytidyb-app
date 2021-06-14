@@ -10,13 +10,20 @@ interface Props extends TextProps {
     | 'subtitle2'
     | 'body'
     | 'body2'
-    | 'button'
+    | 'button';
 }
 
-export const Text: React.FC<Props> = ({ children, variant = 'body', style, ...props }) => {
+export const Text: React.FC<Props> = ({
+  children,
+  variant = 'body',
+  style,
+  ...props
+}) => {
   const styles = useStyles();
 
   return (
-    <TextRN style={[styles[variant], style]} {...props}>{children}</TextRN>
+    <TextRN style={[styles[variant], style]} {...props}>
+      {children}
+    </TextRN>
   );
 };

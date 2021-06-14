@@ -4,6 +4,8 @@ export interface LoaderContextProps {
   visible: boolean;
   handleShow: () => void;
   handleHide: () => void;
-} 
+}
 
-export const LoaderContext = createContext<LoaderContextProps>({} as LoaderContextProps);
+export const LoaderContext = createContext<LoaderContextProps>(
+  {} as LoaderContextProps,
+);

@@ -11,9 +11,7 @@ export const BaseLayout = ({ children, navigation }) => {
     <>
       <Loader />
       <Snackbar />
-      <ScrollView style={style}>
-        {children}
-      </ScrollView>
+      <ScrollView style={style}>{children}</ScrollView>
     </>
   );
-}
+};

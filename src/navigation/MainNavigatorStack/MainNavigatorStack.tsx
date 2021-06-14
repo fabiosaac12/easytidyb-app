@@ -7,8 +7,8 @@ import { Text } from '../../components/Theme';
 import { SectionBottomTabs } from '../SectionBottomTabs';
 
 export type MainStackNavigatorProps = {
-  auth: undefined,
-  sectionBottomTabs: undefined,
+  auth: undefined;
+  sectionBottomTabs: undefined;
 };
 
 const Stack = createStackNavigator<MainStackNavigatorProps>();
@@ -17,9 +17,9 @@ export const MainStackNavigator = () => {
   const styles = useStyles();
   const { user } = useAuth();
 
-  return(
+  return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ ...styles, headerShown: false}}>
+      <Stack.Navigator screenOptions={{ ...styles, headerShown: false }}>
         {!user ? (
           <Stack.Screen
             component={Auth}
@@ -37,4 +37,4 @@ export const MainStackNavigator = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};

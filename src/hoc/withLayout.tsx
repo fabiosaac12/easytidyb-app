@@ -1,7 +1,10 @@
 import React from 'react';
 import { BaseLayout } from '../layouts';
 
-export function withLayout<T>(Component: React.FC<T>, layout: 'base' = 'base'): React.FC<T> {
+export function withLayout<T>(
+  Component: React.FC<T>,
+  layout: 'base' = 'base',
+): React.FC<T> {
   let Layout: React.FC;
 
   switch (layout) {
@@ -17,4 +20,4 @@ export function withLayout<T>(Component: React.FC<T>, layout: 'base' = 'base'): 
       <Component {...props} />
     </Layout>
   );
-};
+}

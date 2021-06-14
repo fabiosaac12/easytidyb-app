@@ -14,7 +14,7 @@ export const Snackbar = () => {
     if (visible) timeout = setTimeout(handleHide, 5000);
 
     return () => {
-      timeout && clearTimeout(timeout)
+      timeout && clearTimeout(timeout);
     };
   }, [visible]);
 

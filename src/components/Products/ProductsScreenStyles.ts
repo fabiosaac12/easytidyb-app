@@ -1,3 +1,3 @@
-import { makeStyles } from "../Theme";
+import { makeStyles } from '../Theme';
 
 export const useStyles = makeStyles(() => {});

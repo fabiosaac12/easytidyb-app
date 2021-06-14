@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, TextInput, TextInputProps, TextProps, ViewProps } from 'react-native';
+import {
+  View,
+  TextInput,
+  TextInputProps,
+  TextProps,
+  ViewProps,
+} from 'react-native';
 import { Text } from '../Text/Text';
 import { useStyles } from './InputStyles';
 
@@ -14,9 +20,8 @@ export const Input: React.FC<Props> = ({
   style,
   labelProps,
   containerProps,
-   ...props
+  ...props
 }) => {
-  
   const styles = useStyles();
 
   return (
@@ -24,7 +29,7 @@ export const Input: React.FC<Props> = ({
       <Text variant="body2" {...labelProps}>
         {label}
       </Text>
-      <TextInput 
+      <TextInput
         style={[styles.input, style]}
         placeholderTextColor={styles.placeholder.color}
         {...props}

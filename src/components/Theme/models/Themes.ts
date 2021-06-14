@@ -1,5 +1,5 @@
-import { Theme } from "./Theme";
+import { Theme } from './Theme';
 
 export interface Themes {
-  [key: string]: Theme
+  [key: string]: Theme;
 }

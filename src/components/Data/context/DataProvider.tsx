@@ -5,9 +5,9 @@ import {
   HttpLink,
   ApolloLink,
   from,
-  NormalizedCacheObject
+  NormalizedCacheObject,
 } from '@apollo/client';
-import { onError } from "@apollo/client/link/error";
+import { onError } from '@apollo/client/link/error';
 import { ApolloProvider } from '@apollo/client/react';
 import { Observable } from '@apollo/client';
 import { useAuth } from '../../Auth';
@@ -34,76 +34,64 @@ export const DataProvider: React.FC = ({ children }) => {
 
       operation.setContext({
         headers: {
-          authorization: `Bearer ${token}`
-        }
+          authorization: `Bearer ${token}`,
+        },
       });
 
       return forward(operation);
     });
 
-    const errorLink = onError(({
-      graphQLErrors,
-      networkError,
-      operation,
-      forward
-    }) => {
-      const { statusCode } = networkError;
+    const errorLink = onError(
+      ({ graphQLErrors, networkError, operation, forward }) => {
+        const { statusCode } = networkError;
 
-      graphQLErrors && console.log(graphQLErrors)
+        graphQLErrors && console.log(graphQLErrors);
 
-      switch (statusCode) {
-        case 403:
-          return new Observable(observer => {
-            refresh()
-              .then(newToken => {
-                const oldHeaders = operation.getContext().headers;
+        switch (statusCode) {
+          case 403:
+            return new Observable((observer) => {
+              refresh()
+                .then((newToken) => {
+                  const oldHeaders = operation.getContext().headers;
 
-                operation.setContext({
-                  headers: {
-                    ...oldHeaders,
-                    authorization: `Bearer ${newToken}`
-                  },
+                  operation.setContext({
+                    headers: {
+                      ...oldHeaders,
+                      authorization: `Bearer ${newToken}`,
+                    },
+                  });
+                })
+                .then(() => {
+                  const subscriber = {
+                    next: observer.next.bind(observer),
+                    error: observer.error.bind(observer),
+                    complete: observer.complete.bind(observer),
+                  };
+
+                  forward(operation).subscribe(subscriber);
+                })
+                .catch((error) => {
+                  logout();
+                  observer.error(error);
                 });
-              })
-              .then(() => {
-                const subscriber = {
-                  next: observer.next.bind(observer),
-                  error: observer.error.bind(observer),
-                  complete: observer.complete.bind(observer)
-                }; 
-
-                forward(operation).subscribe(subscriber);
-              })
-              .catch(error => {
-                logout();
-                observer.error(error);
-              })
-            }
-          );
-        case 401:
-          logout();
-        default:
-          console.log('no connection');
-      }
-    });
+            });
+          case 401:
+            logout();
+          default:
+            console.log('no connection');
+        }
+      },
+    );
 
     const client = new ApolloClient({
-      link: from([
-        authMiddleware,
-        errorLink,
-        httpLink
-      ]),
+      link: from([authMiddleware, errorLink, httpLink]),
       cache: new InMemoryCache(),
     });
 
     setClient(client);
   }, []);
 
-  if (!client || !user) return (
-    <>
-      {children}
-    </>
-  );
+  if (!client || !user) return <>{children}</>;
 
   return (
     <ApolloProvider client={client}>
@@ -111,9 +99,7 @@ export const DataProvider: React.FC = ({ children }) => {
         <OrdersProvider>
           <ProductsProvider>
             <ClientsProvider>
-              <SalesProvider>
-                {children}
-              </SalesProvider>
+              <SalesProvider>{children}</SalesProvider>
             </ClientsProvider>
           </ProductsProvider>
         </OrdersProvider>

@@ -1,11 +1,11 @@
-import { makeStyles } from "../../components/Theme";
+import { makeStyles } from '../../components/Theme';
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles((theme) => ({
   headerStyle: {
     backgroundColor: theme.palette.background[500],
-    elevation: 2
+    elevation: 2,
   },
   cardStyle: {
-    backgroundColor: theme.palette.background[100]
-  }
+    backgroundColor: theme.palette.background[100],
+  },
 }));

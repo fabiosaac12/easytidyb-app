@@ -2,7 +2,9 @@ import { createContext } from 'react';
 import { Client } from '../models/Client';
 
 export interface ClientsContextProps {
-  data?: Client[]
+  data?: Client[];
 }
 
-export const ClientsContext = createContext<ClientsContextProps>({} as ClientsContextProps);
+export const ClientsContext = createContext<ClientsContextProps>(
+  {} as ClientsContextProps,
+);

@@ -9,4 +9,6 @@ export interface SnackbarContextProps {
   handleShow: (message: string, mode: AllowedModes) => void;
 }
 
-export const SnackbarContext = createContext<SnackbarContextProps>({} as SnackbarContextProps);
+export const SnackbarContext = createContext<SnackbarContextProps>(
+  {} as SnackbarContextProps,
+);

@@ -2,7 +2,9 @@ import { createContext } from 'react';
 import { Product } from '../models/Product';
 
 export interface ProductsContextProps {
-  data?: Product[]
+  data?: Product[];
 }
 
-export const ProductsContext = createContext<ProductsContextProps>({} as ProductsContextProps);
+export const ProductsContext = createContext<ProductsContextProps>(
+  {} as ProductsContextProps,
+);

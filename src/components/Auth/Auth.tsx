@@ -28,7 +28,7 @@ export const Auth = withLayout<Props>(({ navigation }) => {
 
   return (
     <View>
-      <Button color="primary" title="Theme" onPress={switchTheme}/>
+      <Button color="primary" title="Theme" onPress={switchTheme} />
       <Input
         value={username}
         keyboardType="default"
@@ -45,11 +45,7 @@ export const Auth = withLayout<Props>(({ navigation }) => {
         label="Password"
         onChangeText={setPassword}
       />
-      <Button
-        onPress={submit}
-        title="Iniciar sesion"
-        color="primary"
-      />
+      <Button onPress={submit} title="Iniciar sesion" color="primary" />
     </View>
   );
 });
