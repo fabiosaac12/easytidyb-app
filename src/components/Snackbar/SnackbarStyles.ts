@@ -17,12 +17,12 @@ export const useStyles = makeStyles(theme => StyleSheet.create({
     opacity: 0.9
   },
   info: {
-    backgroundColor: theme.greys[900]
+    backgroundColor: theme.palette.greys[900]
   },
   success: {
-    backgroundColor: theme.button.green
+    backgroundColor: '#30c25c'
   },
   danger: {
-    backgroundColor: theme.button.red
+    backgroundColor: '#bd3131'
   }
 }));

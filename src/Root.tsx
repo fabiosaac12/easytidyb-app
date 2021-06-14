@@ -1,21 +1,22 @@
 import React from 'react';
-import { Navigation } from './components/Navigation';
+import 'react-native-gesture-handler';
+import { MainStackNavigator } from './navigation/MainNavigatorStack';
 import { AuthProvider } from './components/Auth';
-import { ApolloProvider } from './components/Apollo';
+import { DataProvider } from './components/Data';
 import { ThemeProvider } from './components/Theme';
 import { LoaderProvider } from './components/Loader';
 import { SnackbarProvider } from './components/Snackbar';
 
 export const Root = () => (
-  <LoaderProvider>
-    <SnackbarProvider>
-      <AuthProvider>
-        <ApolloProvider>
-          <ThemeProvider defaultTheme="light">
-            <Navigation />
-          </ThemeProvider>
-        </ApolloProvider>
-      </AuthProvider>
-    </SnackbarProvider>
-  </LoaderProvider>
+  <ThemeProvider defaultTheme="light">
+    <LoaderProvider>
+      <SnackbarProvider>
+        <AuthProvider>
+          <DataProvider>
+            <MainStackNavigator />
+          </DataProvider>
+        </AuthProvider>
+      </SnackbarProvider>
+    </LoaderProvider>
+  </ThemeProvider>
 );

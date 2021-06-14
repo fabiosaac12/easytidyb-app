@@ -4,9 +4,9 @@ import { View } from 'react-native';
 import { useAuth } from './context';
 import { Button, Input, useTheme } from '../Theme';
 import { withLayout } from '../../hoc';
-import { StackNavigatorProps } from '../Navigation';
+import { MainStackNavigatorProps } from '../../navigation/MainNavigatorStack';
 
-interface Props extends StackScreenProps<StackNavigatorProps, 'auth'> {}
+interface Props extends StackScreenProps<MainStackNavigatorProps, 'auth'> {}
 
 export const Auth = withLayout<Props>(({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -19,7 +19,7 @@ export const Auth = withLayout<Props>(({ navigation }) => {
   };
 
   useEffect(() => {
-    user && navigation.navigate('section');
+    user && navigation.navigate('sectionBottomTabs');
   }, [user]);
 
   const switchTheme = () => {
@@ -28,7 +28,7 @@ export const Auth = withLayout<Props>(({ navigation }) => {
 
   return (
     <View>
-      <Button color="lightBlue" title="Theme" onPress={switchTheme}/>
+      <Button color="primary" title="Theme" onPress={switchTheme}/>
       <Input
         value={username}
         keyboardType="default"
@@ -48,7 +48,7 @@ export const Auth = withLayout<Props>(({ navigation }) => {
       <Button
         onPress={submit}
         title="Iniciar sesion"
-        color="darkBlue"
+        color="primary"
       />
     </View>
   );

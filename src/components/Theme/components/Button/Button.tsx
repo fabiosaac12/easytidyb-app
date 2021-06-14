@@ -5,14 +5,8 @@ import { Text } from '../Text/Text';
 
 interface Props extends TouchableOpacityProps {
   color:
-    | 'red'
-    | 'orange'
-    | 'yellow'
-    | 'green'
-    | 'lightBlue'
-    | 'darkBlue'
-    | 'purple'
-    | 'pink';
+    | 'primary'
+    | 'secondary'
   title: string;
 }
 

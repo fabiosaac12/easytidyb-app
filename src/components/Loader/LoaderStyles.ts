@@ -11,6 +11,6 @@ export const useStyles = makeStyles(theme => StyleSheet.create({
     backgroundColor: '#00000050',
   },
   loadder: {
-    color: theme.contrast[100]
+    color: theme.palette.contrast[100]
   }
 }));

@@ -9,6 +9,8 @@ interface Props {
 export const ThemeProvider: React.FC<Props> = ({ children, defaultTheme = 'light' }) => {
   const [themeName, setThemeName] = useState<keyof typeof themes>(defaultTheme);
 
+  console.log(themeName);
+  
   const contextValue: ThemeContextProps = {
     themeName,
     theme: themes[themeName],

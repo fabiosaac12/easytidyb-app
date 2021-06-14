@@ -12,28 +12,10 @@ export const useStyles = makeStyles(theme => StyleSheet.create({
     alignItems: 'center',
     margin: theme.spacing()
   },
-  red: {
-    backgroundColor: theme.button.red
+  primary: {
+    backgroundColor: theme.palette.primary[500]
   },
-  orange: {
-    backgroundColor: theme.button.orange
+  secondary: {
+    backgroundColor: theme.palette.secondary[500]
   },
-  yellow: {
-    backgroundColor: theme.button.yellow
-  },
-  green: {
-    backgroundColor: theme.button.green
-  },
-  lightBlue: {
-    backgroundColor: theme.button.lightBlue
-  },
-  darkBlue: {
-    backgroundColor: theme.button.darkBlue
-  },
-  purple: {
-    backgroundColor: theme.button.purple
-  },
-  pink: {
-    backgroundColor: theme.button.pink
-  }
 }));

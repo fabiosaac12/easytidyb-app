@@ -3,7 +3,7 @@ import { makeStyles } from "../../helpers";
 
 export const useStyles = makeStyles((theme) => StyleSheet.create({
   view: {
-    borderColor: theme.greys[500],
+    borderColor: theme.palette.greys[500],
     borderWidth: theme.name === 'dark' ? 1.5 : 1,
     paddingVertical: theme.spacing(0.7),
     paddingHorizontal: theme.spacing(2),
@@ -11,11 +11,11 @@ export const useStyles = makeStyles((theme) => StyleSheet.create({
     margin: theme.spacing()
   },
   input: {
-    color: theme.text.primary,
+    color: theme.palette.text.primary,
     fontSize: 16,
     padding: 0
   },
   placeholder: {
-    color: theme.greys[500]
+    color: theme.palette.greys[500]
   }
 }));

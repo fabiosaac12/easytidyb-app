@@ -3,7 +3,7 @@ import { Text as TextRN, TextProps } from 'react-native';
 import { useStyles } from './TextStyles';
 
 interface Props extends TextProps {
-  variant:
+  variant?:
     | 'title'
     | 'title2'
     | 'subtitle'
