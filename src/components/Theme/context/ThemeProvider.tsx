@@ -12,8 +12,6 @@ export const ThemeProvider: React.FC<Props> = ({
 }) => {
   const [themeName, setThemeName] = useState<keyof typeof themes>(defaultTheme);
 
-  console.log(themeName);
-
   const contextValue: ThemeContextProps = {
     themeName,
     theme: themes[themeName],

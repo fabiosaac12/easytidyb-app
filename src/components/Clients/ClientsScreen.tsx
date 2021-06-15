@@ -1,6 +1,7 @@
 import React from 'react';
+import { withLayout } from '../../hoc';
 import { Text } from '../Theme';
 
-export const ClientsScreen: React.FC = () => {
+export const ClientsScreen = withLayout(() => {
   return <Text>Clients</Text>;
-};
+});

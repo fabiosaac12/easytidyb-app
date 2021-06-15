@@ -1,22 +1,11 @@
-import { useQuery } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../Auth';
+import React from 'react';
 import { Client } from '../models/Client';
 import { getClients } from './graphql/queries';
 import { ClientsContext, ClientsContextProps } from './ClientsContext';
+import { useSection } from '../../../hooks/useSection';
 
 export const ClientsProvider: React.FC = ({ children }) => {
-  const [clients, setClients] = useState<Client[]>();
-
-  const { user } = useAuth();
-
-  const { data, loading, error } = useQuery(getClients, {
-    variables: { userId: user?._id },
-  });
-
-  useEffect(() => {
-    setClients(data?.clients);
-  }, [data]);
+  const [clients, setClients] = useSection<Client>('clients', getClients);
 
   const contextValue: ClientsContextProps = {
     data: clients,
