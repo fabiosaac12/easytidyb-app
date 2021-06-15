@@ -4,14 +4,14 @@ import { useLoader } from './context';
 import { useStyles } from './LoaderStyles';
 
 export const Loader = () => {
-  const { loading } = useLoader();
+  const { visible } = useLoader();
   const styles = useStyles();
 
-  if (!loading) return null;
+  if (!visible) return null;
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={styles.loadder.color} />
+      <ActivityIndicator size="large" color={styles.loader.color} />
     </View>
   );
 };

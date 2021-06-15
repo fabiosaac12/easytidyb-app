@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { makeStyles } from '../Theme';
 
 export const useStyles = makeStyles((theme) =>
@@ -8,10 +8,10 @@ export const useStyles = makeStyles((theme) =>
       height: '100%',
       width: '100%',
       justifyContent: 'center',
-      zIndex: 200,
-      backgroundColor: '#00000050',
+      elevation: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.6)',
     },
-    loadder: {
+    loader: {
       color: theme.palette.contrast[100],
     },
   }),
