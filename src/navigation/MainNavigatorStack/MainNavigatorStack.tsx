@@ -4,11 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AuthScreen, useAuth } from '../../components/Auth';
 import { useStyles } from './MainNavigatorStackStyles';
 import { Text } from '../../components/Theme';
-import { SectionBottomTabs } from '../SectionBottomTabs';
+import { DrawerNavigator } from '../DrawerNavigator';
 
 export type MainStackNavigatorProps = {
   auth: undefined;
-  sectionBottomTabs: undefined;
+  drawerNavigator: undefined;
 };
 
 const Stack = createStackNavigator<MainStackNavigatorProps>();
@@ -17,7 +17,9 @@ export const MainStackNavigator = () => {
   const styles = useStyles();
   const { state } = useAuth();
 
-  if (state == 'unknown') return null;
+  if (state === 'unknown') {
+    return null;
+  }
 
   return (
     <NavigationContainer>
@@ -32,10 +34,7 @@ export const MainStackNavigator = () => {
           />
         ) : (
           state === 'authenticated' && (
-            <Stack.Screen
-              component={SectionBottomTabs}
-              name="sectionBottomTabs"
-            />
+            <Stack.Screen component={DrawerNavigator} name="drawerNavigator" />
           )
         )}
       </Stack.Navigator>

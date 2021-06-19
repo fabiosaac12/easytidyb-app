@@ -1,6 +1,5 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { Loader } from '../../components/Loader';
 import { Snackbar } from '../../components/Snackbar';
 import { useStyles } from './BaseLayoutStyles';
 
@@ -10,8 +9,7 @@ export const BaseLayout: React.FC = ({ children }) => {
   return (
     <>
       <Snackbar />
-      <ScrollView style={style}>{children}</ScrollView>
-      <Loader />
+      <ScrollView style={style.layout}>{children}</ScrollView>
     </>
   );
 };

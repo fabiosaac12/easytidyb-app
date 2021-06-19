@@ -8,19 +8,15 @@ import { MainStackNavigatorProps } from '../../navigation/MainNavigatorStack';
 
 interface Props extends StackScreenProps<MainStackNavigatorProps, 'auth'> {}
 
-export const AuthScreen = withLayout<Props>(({ navigation }) => {
+export const AuthScreen = withLayout<Props>(() => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   const { changeTheme, themeName } = useTheme();
 
   const submit = () => {
     login({ username, password });
   };
-
-  useEffect(() => {
-    user && navigation.navigate('drawerNavigator');
-  }, [user]);
 
   const switchTheme = () => {
     themeName === 'dark' ? changeTheme('light') : changeTheme('dark');
