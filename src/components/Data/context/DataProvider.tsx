@@ -86,7 +86,19 @@ export const DataProvider: React.FC = ({ children }) => {
 
     const client = new ApolloClient({
       link: from([authMiddleware, errorLink, httpLink]),
-      cache: new InMemoryCache(),
+      cache: new InMemoryCache({
+        typePolicies: {
+          Query: {
+            fields: {
+              suppliers: {
+                merge(existing, incoming) {
+                  return incoming;
+                },
+              },
+            },
+          },
+        },
+      }),
     });
 
     setClient(client);

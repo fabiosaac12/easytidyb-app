@@ -9,6 +9,7 @@ import { FloatingActionButton } from '../FloatingActionButton';
 import { useModal } from '../Modal';
 import { SuppliersAddForm } from './SuppliersAddForm';
 import { SuppliersUpdateForm } from './SuppliersUpdateForm';
+import { SuppliersDeleteModal } from './context/SuppliersDeleteModal';
 
 export const SuppliersScreen = withLayout(() => {
   const suppliers = useSuppliers();
@@ -48,7 +49,15 @@ export const SuppliersScreen = withLayout(() => {
               >
                 <Icon name="edit" style={styles.editIcon} size={30} />
               </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.8} style={styles.actionButton}>
+              <TouchableOpacity
+                onPress={() =>
+                  modal.handleOpen({
+                    content: <SuppliersDeleteModal supplierId={item._id} />,
+                  })
+                }
+                activeOpacity={0.8}
+                style={styles.actionButton}
+              >
                 <Icon name="delete" style={styles.deleteIcon} size={30} />
               </TouchableOpacity>
             </View>

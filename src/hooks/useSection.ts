@@ -8,11 +8,12 @@ type GraphQL = {
   getQuery: DocumentNode;
   addQuery: DocumentNode;
   updateQuery: DocumentNode;
+  deleteQuery: DocumentNode;
 };
 
 export const useSection = <T, U>(
   section: Section,
-  { addQuery, getQuery, updateQuery }: GraphQL,
+  { addQuery, getQuery, updateQuery, deleteQuery }: GraphQL,
 ) => {
   const loadingMutation = useRef(false);
 
@@ -30,14 +31,21 @@ export const useSection = <T, U>(
       addSupplier: { _id: string } & U;
     },
     { userId: string } & T
-  >(addQuery);
+  >(addQuery, { onCompleted: () => queryGet.refetch() });
 
   const [update, mutationUpdate] = useMutation<
     {
       updateSupplier: { _id: string } & U;
     },
     T
-  >(updateQuery);
+  >(updateQuery, { onCompleted: () => queryGet.refetch() });
+
+  const [delete_, mutationDelete] = useMutation<
+    {
+      deleteSupplier: { _id: string } & U;
+    },
+    { _id: string }
+  >(deleteQuery, { onCompleted: () => queryGet.refetch() });
 
   useEffect(() => {
     queryGet.loading ? loader.handleShow() : loader.handleHide();
@@ -68,24 +76,46 @@ export const useSection = <T, U>(
   }, [mutationUpdate.loading]);
 
   useEffect(() => {
-    const data = mutationAdd?.data?.addSupplier;
-
-    if (data) {
-      setSectionData((sectionData) => [...(sectionData || []), data]);
+    if (mutationDelete.loading) {
+      loadingMutation.current = true;
+      loader.handleShow();
     }
-  }, [mutationAdd.data]);
 
-  useEffect(() => {
-    const data = mutationUpdate?.data?.updateSupplier;
-
-    if (data) {
-      setSectionData((sectionData) =>
-        sectionData?.map((element) =>
-          element._id === data._id ? data : element,
-        ),
-      );
+    if (!mutationDelete.loading && loadingMutation.current === true) {
+      loadingMutation.current = false;
+      loader.handleHide();
     }
-  }, [mutationUpdate.data]);
+  }, [mutationDelete.loading]);
+
+  // useEffect(() => {
+  //   const data = mutationAdd?.data?.addSupplier;
+
+  //   if (data) {
+  //     setSectionData((sectionData) => [...(sectionData || []), data]);
+  //   }
+  // }, [mutationAdd.data]);
+
+  // useEffect(() => {
+  //   const data = mutationUpdate?.data?.updateSupplier;
+
+  //   if (data) {
+  //     setSectionData((sectionData) =>
+  //       sectionData?.map((element) =>
+  //         element._id === data._id ? data : element,
+  //       ),
+  //     );
+  //   }
+  // }, [mutationUpdate.data]);
+
+  // useEffect(() => {
+  //   const data = mutationDelete?.data?.deleteSupplier;
+
+  //   if (data) {
+  //     setSectionData((sectionData) =>
+  //       sectionData?.filter((element) => element._id !== data._id),
+  //     );
+  //   }
+  // }, [mutationDelete.data]);
 
   useEffect(() => {
     queryGet.data && setSectionData(queryGet.data[section]);
@@ -96,5 +126,6 @@ export const useSection = <T, U>(
     setData: setSectionData,
     add,
     update,
+    delete_,
   };
 };
