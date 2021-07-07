@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { FloatingActionButton } from '../FloatingActionButton';
 import { useModal } from '../Modal';
 import { SuppliersAddForm } from './SuppliersAddForm';
+import { SuppliersUpdateForm } from './SuppliersUpdateForm';
 
 export const SuppliersScreen = withLayout(() => {
   const suppliers = useSuppliers();
@@ -28,11 +29,23 @@ export const SuppliersScreen = withLayout(() => {
               <Icon size={45} name="business" style={styles.defaultImageIcon} />
             </View>
             <View style={styles.content}>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.contact}>{item.contact}</Text>
+              <Text style={styles.name} numberOfLines={1}>
+                {item.name}
+              </Text>
+              <Text numberOfLines={1} style={styles.contact}>
+                {item.contact}
+              </Text>
             </View>
             <View style={styles.actionButtonsContainer}>
-              <TouchableOpacity activeOpacity={0.8} style={styles.actionButton}>
+              <TouchableOpacity
+                onPress={() =>
+                  modal.handleOpen({
+                    content: <SuppliersUpdateForm supplierId={item._id} />,
+                  })
+                }
+                activeOpacity={0.8}
+                style={styles.actionButton}
+              >
                 <Icon name="edit" style={styles.editIcon} size={30} />
               </TouchableOpacity>
               <TouchableOpacity activeOpacity={0.8} style={styles.actionButton}>

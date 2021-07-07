@@ -5,6 +5,7 @@ import { SupplierToAdd } from '../models/SupplierToAdd';
 export interface SuppliersContextProps {
   data?: Supplier[];
   add: (supplier: SupplierToAdd) => void;
+  update: (supplier: Supplier) => void;
 }
 
 export const SuppliersContext = createContext<SuppliersContextProps>(

@@ -31,3 +31,24 @@ export const addSupplier = gql`
     }
   }
 `;
+
+export const updateSupplier = gql`
+  mutation updateSupplier(
+    $_id: ID!
+    $name: String!
+    $contact: String
+    $location: String!
+  ) {
+    updateSupplier(
+      _id: $_id
+      name: $name
+      contact: $contact
+      location: $location
+    ) {
+      _id
+      name
+      contact
+      location
+    }
+  }
+`;
