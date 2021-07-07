@@ -7,8 +7,8 @@ export const useStyles = makeStyles((theme) => {
 
   return StyleSheet.create({
     layout: {
-      paddingTop: insets.top + theme.spacing(2),
-      paddingBottom: theme.spacing(2),
+      flex: 1,
+      paddingBottom: 57,
       paddingLeft: insets.left + theme.spacing(2),
       paddingRight: insets.right + theme.spacing(2),
     },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SalesScreen, useSales } from './../../components/Sales';
-import { ClientsScreen, useClients } from './../../components/Clients';
+import { SalesScreen } from './../../components/Sales';
+import { ClientsScreen } from './../../components/Clients';
 import { ProductsScreen, useProducts } from './../../components/Products';
 import { OrdersScreen, useOrders } from './../../components/Orders';
 import { SuppliersScreen, useSuppliers } from './../../components/Suppliers';
@@ -21,9 +21,9 @@ const Tab = createBottomTabNavigator<SectionBottomTabsProps>();
 export const SectionBottomTabs = () => {
   const styles = useStyles();
 
-  const products = useProducts();
-  const orders = useOrders();
-  const suppliers = useSuppliers();
+  // const products = useProducts();
+  // const orders = useOrders();
+  // const suppliers = useSuppliers();
 
   return (
     <Tab.Navigator
@@ -40,7 +40,7 @@ export const SectionBottomTabs = () => {
       }}
     >
       <Tab.Screen name="suppliers" component={SuppliersScreen} />
-      {suppliers.data?.length && (
+      {/* {suppliers.data?.length && (
         <Tab.Screen name="orders" component={OrdersScreen} />
       )}
       {orders.data?.length && (
@@ -51,7 +51,7 @@ export const SectionBottomTabs = () => {
       )}
       {products.data?.length && (
         <Tab.Screen name="sales" component={SalesScreen} />
-      )}
+      )} */}
     </Tab.Navigator>
   );
 };

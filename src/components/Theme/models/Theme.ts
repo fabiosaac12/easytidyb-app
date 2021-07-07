@@ -66,4 +66,16 @@ export interface Theme {
       button: string;
     };
   };
+  shadows: Shadow[];
 }
+
+type Shadow = {
+  shadowColor: string;
+  shadowOffset: {
+    width: number;
+    height: number;
+  };
+  shadowOpacity: number;
+  shadowRadius: number;
+  elevation: number;
+};

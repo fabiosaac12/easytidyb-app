@@ -10,3 +10,24 @@ export const getSuppliers = gql`
     }
   }
 `;
+
+export const addSupplier = gql`
+  mutation addSupplier(
+    $userId: ID!
+    $name: String!
+    $contact: String
+    $location: String!
+  ) {
+    addSupplier(
+      userId: $userId
+      name: $name
+      contact: $contact
+      location: $location
+    ) {
+      _id
+      name
+      contact
+      location
+    }
+  }
+`;

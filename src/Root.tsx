@@ -6,17 +6,20 @@ import { DataProvider } from './components/Data';
 import { ThemeProvider } from './components/Theme';
 import { LoaderProvider } from './components/Loader';
 import { SnackbarProvider } from './components/Snackbar';
+import { ModalProvider } from './components/Modal';
 
 export const Root = () => (
   <ThemeProvider defaultTheme="light">
     <LoaderProvider>
-      <SnackbarProvider>
-        <AuthProvider>
-          <DataProvider>
-            <MainStackNavigator />
-          </DataProvider>
-        </AuthProvider>
-      </SnackbarProvider>
+      <ModalProvider>
+        <SnackbarProvider>
+          <AuthProvider>
+            <DataProvider>
+              <MainStackNavigator />
+            </DataProvider>
+          </AuthProvider>
+        </SnackbarProvider>
+      </ModalProvider>
     </LoaderProvider>
   </ThemeProvider>
 );

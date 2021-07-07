@@ -43,7 +43,7 @@ export const DataProvider: React.FC = ({ children }) => {
 
     const errorLink = onError(
       ({ graphQLErrors, networkError, operation, forward }) => {
-        const { statusCode } = networkError;
+        const statusCode = networkError?.statusCode;
 
         graphQLErrors && console.log(graphQLErrors);
 
@@ -77,6 +77,7 @@ export const DataProvider: React.FC = ({ children }) => {
             });
           case 401:
             logout();
+            break;
           default:
             console.log('no connection');
         }
@@ -91,18 +92,22 @@ export const DataProvider: React.FC = ({ children }) => {
     setClient(client);
   }, []);
 
-  if (!client || !user) return <>{children}</>;
+  if (!client || !user) {
+    return <>{children}</>;
+  }
 
   return (
     <ApolloProvider client={client}>
       <SuppliersProvider>
-        <OrdersProvider>
+        {/* <OrdersProvider>
           <ProductsProvider>
             <ClientsProvider>
-              <SalesProvider>{children}</SalesProvider>
+              <SalesProvider> */}
+        {children}
+        {/* </SalesProvider>
             </ClientsProvider>
           </ProductsProvider>
-        </OrdersProvider>
+        </OrdersProvider> */}
       </SuppliersProvider>
     </ApolloProvider>
   );

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Loader } from '../Loader';
 import { LoaderContext, LoaderContextProps } from './LoaderContext';
 
 export const LoaderProvider: React.FC = ({ children }) => {
@@ -13,7 +12,6 @@ export const LoaderProvider: React.FC = ({ children }) => {
 
   return (
     <LoaderContext.Provider value={contextValue}>
-      <Loader />
       {children}
     </LoaderContext.Provider>
   );

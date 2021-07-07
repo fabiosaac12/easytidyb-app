@@ -1,17 +1,22 @@
 import React from 'react';
 import { useSection } from '../../../hooks/useSection';
+import { useAuth } from '../../Auth';
 import { Supplier } from '../models/Supplier';
-import { getSuppliers } from './graphql/queries';
+import { SupplierToAdd } from '../models/SupplierToAdd';
+import { getSuppliers, addSupplier } from './graphql/queries';
 import { SuppliersContext, SuppliersContextProps } from './SuppliersContext';
 
 export const SuppliersProvider: React.FC = ({ children }) => {
-  const [suppliers, setSuppliers] = useSection<Supplier>(
-    'suppliers',
-    getSuppliers,
-  );
+  const { user } = useAuth();
+  const { data, add } = useSection<SupplierToAdd, Supplier>('suppliers', {
+    getQuery: getSuppliers,
+    addQuery: addSupplier,
+  });
 
   const contextValue: SuppliersContextProps = {
-    data: suppliers,
+    data,
+    add: (supplier) =>
+      user?._id && add({ variables: { userId: user._id, ...supplier } }),
   };
 
   return (

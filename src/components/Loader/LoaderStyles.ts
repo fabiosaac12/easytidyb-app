@@ -1,14 +1,12 @@
-import { StyleSheet, useWindowDimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { makeStyles } from '../Theme';
 
 export const useStyles = makeStyles((theme) =>
   StyleSheet.create({
-    container: {
-      position: 'absolute',
-      height: '100%',
-      width: '100%',
+    backdrop: {
+      flex: 1,
       justifyContent: 'center',
-      elevation: 1,
+      alignItems: 'center',
       backgroundColor: 'rgba(0, 0, 0, 0.6)',
     },
     loader: {

@@ -1,30 +1,67 @@
-import { useQuery, DocumentNode } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { useQuery, DocumentNode, useMutation } from '@apollo/client';
+import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../components/Auth';
 import { useLoader } from '../components/Loader';
 
 type Section = 'sales' | 'clients' | 'products' | 'orders' | 'suppliers';
+type GraphQL = {
+  getQuery: DocumentNode;
+  addQuery: DocumentNode;
+};
 
-export const useSection = <T>(
+export const useSection = <T, U>(
   section: Section,
-  query: DocumentNode,
-): [T[] | undefined, React.Dispatch<T[]>] => {
-  const [sectionData, setSectionData] = useState<T[]>();
+  { addQuery, getQuery }: GraphQL,
+) => {
+  const loadingMutation = useRef(false);
+
+  const [sectionData, setSectionData] = useState<U[]>();
 
   const { user } = useAuth();
   const loader = useLoader();
 
-  const { data, loading, error } = useQuery(query, {
+  const queryGet = useQuery(getQuery, {
     variables: { userId: user?._id },
   });
 
-  useEffect(() => {
-    loading ? loader.handleShow() : loader.handleHide();
-  }, [loading]);
+  const [add, mutationAdd] = useMutation<
+    {
+      addSupplier: U;
+    },
+    { userId: string } & T
+  >(addQuery);
 
   useEffect(() => {
-    data && setSectionData(data[section]);
-  }, [data]);
+    queryGet.loading ? loader.handleShow() : loader.handleHide();
+  }, [queryGet.loading]);
 
-  return [sectionData, setSectionData];
+  useEffect(() => {
+    if (mutationAdd.loading) {
+      loadingMutation.current = true;
+      loader.handleShow();
+    }
+
+    if (!mutationAdd.loading && loadingMutation.current === true) {
+      loadingMutation.current = false;
+      loader.handleHide();
+    }
+  }, [mutationAdd.loading]);
+
+  useEffect(() => {
+    const data = mutationAdd?.data?.addSupplier;
+
+    if (data) {
+      setSectionData((sectionData) => [...(sectionData || []), data]);
+    }
+  }, [mutationAdd.data]);
+
+  useEffect(() => {
+    queryGet.data && setSectionData(queryGet.data[section]);
+  }, [queryGet.data]);
+
+  return {
+    data: sectionData,
+    setData: setSectionData,
+    add,
+  };
 };

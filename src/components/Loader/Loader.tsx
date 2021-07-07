@@ -1,17 +1,26 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Modal as RNModal } from 'react-native';
 import { useLoader } from './context';
 import { useStyles } from './LoaderStyles';
 
 export const Loader = () => {
-  const { visible } = useLoader();
+  const { visible, handleHide } = useLoader();
   const styles = useStyles();
 
-  if (!visible) return null;
+  if (!visible) {
+    return null;
+  }
 
   return (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" color={styles.loader.color} />
-    </View>
+    <RNModal
+      animationType="fade"
+      transparent={true}
+      visible={visible || true}
+      onRequestClose={handleHide}
+    >
+      <View style={styles.backdrop}>
+        <ActivityIndicator size="large" color={styles.loader.color} />
+      </View>
+    </RNModal>
   );
 };
