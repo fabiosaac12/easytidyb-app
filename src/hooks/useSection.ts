@@ -87,36 +87,6 @@ export const useSection = <T, U>(
     }
   }, [mutationDelete.loading]);
 
-  // useEffect(() => {
-  //   const data = mutationAdd?.data?.addSupplier;
-
-  //   if (data) {
-  //     setSectionData((sectionData) => [...(sectionData || []), data]);
-  //   }
-  // }, [mutationAdd.data]);
-
-  // useEffect(() => {
-  //   const data = mutationUpdate?.data?.updateSupplier;
-
-  //   if (data) {
-  //     setSectionData((sectionData) =>
-  //       sectionData?.map((element) =>
-  //         element._id === data._id ? data : element,
-  //       ),
-  //     );
-  //   }
-  // }, [mutationUpdate.data]);
-
-  // useEffect(() => {
-  //   const data = mutationDelete?.data?.deleteSupplier;
-
-  //   if (data) {
-  //     setSectionData((sectionData) =>
-  //       sectionData?.filter((element) => element._id !== data._id),
-  //     );
-  //   }
-  // }, [mutationDelete.data]);
-
   useEffect(() => {
     queryGet.data && setSectionData(queryGet.data[section]);
   }, [queryGet.data]);

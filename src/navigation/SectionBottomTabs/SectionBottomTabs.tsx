@@ -23,7 +23,7 @@ export const SectionBottomTabs = () => {
 
   // const products = useProducts();
   // const orders = useOrders();
-  // const suppliers = useSuppliers();
+  const suppliers = useSuppliers();
 
   return (
     <Tab.Navigator
@@ -40,10 +40,10 @@ export const SectionBottomTabs = () => {
       }}
     >
       <Tab.Screen name="suppliers" component={SuppliersScreen} />
-      {/* {suppliers.data?.length && (
+      {suppliers.data?.length && (
         <Tab.Screen name="orders" component={OrdersScreen} />
       )}
-      {orders.data?.length && (
+      {/* {orders.data?.length && (
         <Tab.Screen name="products" component={ProductsScreen} />
       )}
       {products.data?.length && (
