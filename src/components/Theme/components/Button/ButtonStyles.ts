@@ -5,13 +5,13 @@ export const useStyles = makeStyles((theme) =>
   StyleSheet.create({
     button: {
       padding: theme.spacing(1.3),
-      elevation: 3,
-      borderRadius: theme.radius(),
+      borderRadius: theme.radius(5),
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
       margin: theme.spacing(),
+      ...theme.shadows[2],
     },
     primary: {
       backgroundColor: theme.palette.primary[500],

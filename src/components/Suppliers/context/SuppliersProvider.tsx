@@ -3,6 +3,7 @@ import { useSection } from '../../../hooks/useSection';
 import { useAuth } from '../../Auth';
 import { Supplier } from '../models/Supplier';
 import { SupplierToAdd } from '../models/SupplierToAdd';
+import { SupplierToUpdate } from '../models/SupplierToUpdate';
 import {
   getSuppliers,
   addSupplier,
@@ -13,15 +14,16 @@ import { SuppliersContext, SuppliersContextProps } from './SuppliersContext';
 
 export const SuppliersProvider: React.FC = ({ children }) => {
   const { user } = useAuth();
-  const { data, add, update, delete_ } = useSection<SupplierToAdd, Supplier>(
-    'suppliers',
-    {
-      getQuery: getSuppliers,
-      addQuery: addSupplier,
-      updateQuery: updateSupplier,
-      deleteQuery: deleteSupplier,
-    },
-  );
+  const { data, add, update, delete_ } = useSection<
+    Supplier,
+    SupplierToAdd,
+    SupplierToUpdate
+  >('suppliers', {
+    getQuery: getSuppliers,
+    addQuery: addSupplier,
+    updateQuery: updateSupplier,
+    deleteQuery: deleteSupplier,
+  });
 
   const contextValue: SuppliersContextProps = {
     data,

@@ -4,37 +4,37 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useModal } from '../../Modal';
 import { Text } from '../../Theme';
-import { SuppliersDeleteModal } from '../SuppliersDeleteModal';
-import { Supplier } from '../models/Supplier';
-import { SuppliersUpdateForm } from '../SuppliersUpdateForm';
-import { useStyles } from './SupplierCardStyles';
+import { OrdersDeleteModal } from '../OrdersDeleteModal';
+import { Order } from '../models/Order';
+import { OrdersUpdateForm } from '../OrdersUpdateForm';
+import { useStyles } from './OrderCardStyles';
 
 interface Props {
-  supplier: Supplier;
+  order: Order;
 }
 
-export const SupplierCard: FC<Props> = ({ supplier }) => {
+export const OrderCard: FC<Props> = ({ order }) => {
   const modal = useModal();
   const styles = useStyles();
 
   return (
-    <View key={supplier._id} style={styles.container}>
+    <View key={order._id} style={styles.container}>
       <View style={styles.defaultImage}>
         <Icon size={45} name="business" style={styles.defaultImageIcon} />
       </View>
       <View style={styles.content}>
         <Text style={styles.name} numberOfLines={1}>
-          {supplier.name}
+          {new Date(order.date).toDateString()}
         </Text>
         <Text numberOfLines={1} style={styles.contact}>
-          {supplier.contact}
+          {order.expectedObtained}
         </Text>
       </View>
       <View style={styles.actionButtonsContainer}>
         <TouchableOpacity
           onPress={() =>
             modal.handleOpen({
-              content: <SuppliersUpdateForm supplierId={supplier._id} />,
+              content: <OrdersUpdateForm orderId={order._id} />,
             })
           }
           activeOpacity={0.8}
@@ -45,7 +45,7 @@ export const SupplierCard: FC<Props> = ({ supplier }) => {
         <TouchableOpacity
           onPress={() =>
             modal.handleOpen({
-              content: <SuppliersDeleteModal supplierId={supplier._id} />,
+              content: <OrdersDeleteModal orderId={order._id} />,
             })
           }
           activeOpacity={0.8}

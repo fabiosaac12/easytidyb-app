@@ -11,13 +11,14 @@ type GraphQL = {
   deleteQuery: DocumentNode;
 };
 
-export const useSection = <T, U>(
+export const useSection = <Element, ElementToAdd, ElementToUpdate>(
   section: Section,
   { addQuery, getQuery, updateQuery, deleteQuery }: GraphQL,
 ) => {
   const loadingMutation = useRef(false);
 
-  const [sectionData, setSectionData] = useState<({ _id: string } & U)[]>();
+  const [sectionData, setSectionData] =
+    useState<({ _id: string } & Element)[]>();
 
   const { user } = useAuth();
   const loader = useLoader();
@@ -28,21 +29,21 @@ export const useSection = <T, U>(
 
   const [add, mutationAdd] = useMutation<
     {
-      addSupplier: { _id: string } & U;
+      addSupplier: { _id: string } & Element;
     },
-    { userId: string } & T
+    { userId: string } & ElementToAdd
   >(addQuery, { onCompleted: () => queryGet.refetch() });
 
   const [update, mutationUpdate] = useMutation<
     {
-      updateSupplier: { _id: string } & U;
+      updateSupplier: { _id: string } & Element;
     },
-    T
+    ElementToUpdate
   >(updateQuery, { onCompleted: () => queryGet.refetch() });
 
   const [delete_, mutationDelete] = useMutation<
     {
-      deleteSupplier: { _id: string } & U;
+      deleteSupplier: { _id: string } & Element;
     },
     { _id: string }
   >(deleteQuery, { onCompleted: () => queryGet.refetch() });

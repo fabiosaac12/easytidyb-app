@@ -22,7 +22,7 @@ import { ClientsProvider } from '../../Clients';
 
 export const DataProvider: React.FC = ({ children }) => {
   const [client, setClient] = useState<ApolloClient<NormalizedCacheObject>>();
-  const { logout, user } = useAuth();
+  const { logout, user, state } = useAuth();
 
   useEffect(() => {
     const httpLink = new HttpLink({
@@ -95,6 +95,11 @@ export const DataProvider: React.FC = ({ children }) => {
                   return incoming;
                 },
               },
+              orders: {
+                merge(existing, incoming) {
+                  return incoming;
+                },
+              },
             },
           },
         },
@@ -104,22 +109,22 @@ export const DataProvider: React.FC = ({ children }) => {
     setClient(client);
   }, []);
 
-  if (!client || !user) {
+  if (!client || !(state === 'authenticated')) {
     return <>{children}</>;
   }
 
   return (
     <ApolloProvider client={client}>
       <SuppliersProvider>
-        {/* <OrdersProvider>
-          <ProductsProvider>
+        <OrdersProvider>
+          {/* <ProductsProvider>
             <ClientsProvider>
               <SalesProvider> */}
-        {children}
-        {/* </SalesProvider>
+          {children}
+          {/* </SalesProvider>
             </ClientsProvider>
-          </ProductsProvider>
-        </OrdersProvider> */}
+          </ProductsProvider> */}
+        </OrdersProvider>
       </SuppliersProvider>
     </ApolloProvider>
   );

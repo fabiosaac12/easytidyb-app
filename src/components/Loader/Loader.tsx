@@ -14,8 +14,8 @@ export const Loader = () => {
   return (
     <RNModal
       animationType="fade"
-      transparent={true}
-      visible={visible || true}
+      transparent
+      visible={visible}
       onRequestClose={handleHide}
     >
       <View style={styles.backdrop}>

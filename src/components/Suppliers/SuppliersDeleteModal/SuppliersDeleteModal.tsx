@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
-import { useModal } from '../../../Modal';
-import { Button, Text } from '../../../Theme';
-import { Supplier } from '../../models/Supplier';
-import { useSuppliers } from '../useSuppliers';
+import { useModal } from '../../Modal';
+import { Button, Text } from '../../Theme';
+import { Supplier } from '../models/Supplier';
+import { useSuppliers } from '../context/useSuppliers';
 import { useStyles } from './SuppliersDeleteModalStyles';
 
 interface Props {
