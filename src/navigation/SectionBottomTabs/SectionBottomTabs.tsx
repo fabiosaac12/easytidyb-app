@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SalesScreen } from './../../components/Sales';
-import { ClientsScreen } from './../../components/Clients';
+import { ClientsScreen, useClients } from './../../components/Clients';
 import { ProductsScreen, useProducts } from './../../components/Products';
 import { OrdersScreen, useOrders } from './../../components/Orders';
 import { SuppliersScreen, useSuppliers } from './../../components/Suppliers';
@@ -22,8 +22,9 @@ export const SectionBottomTabs = () => {
   const styles = useStyles();
 
   // const products = useProducts();
-  // const orders = useOrders();
+  // const clients = useClients();
   const suppliers = useSuppliers();
+  const orders = useOrders();
 
   return (
     <Tab.Navigator
@@ -43,13 +44,13 @@ export const SectionBottomTabs = () => {
       {!!suppliers.data?.length && (
         <Tab.Screen name="orders" component={OrdersScreen} />
       )}
-      {/* {orders.data?.length && (
+      {!!orders.data?.length && (
         <Tab.Screen name="products" component={ProductsScreen} />
       )}
-      {products.data?.length && (
+      {/* {!!products.data?.length && (
         <Tab.Screen name="clients" component={ClientsScreen} />
       )}
-      {products.data?.length && (
+      {!!products.data?.length && !!clients.data?.length && (
         <Tab.Screen name="sales" component={SalesScreen} />
       )} */}
     </Tab.Navigator>

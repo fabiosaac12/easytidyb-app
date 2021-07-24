@@ -23,10 +23,10 @@ export const OrderCard: FC<Props> = ({ order }) => {
         <Icon size={45} name="business" style={styles.defaultImageIcon} />
       </View>
       <View style={styles.content}>
-        <Text style={styles.name} numberOfLines={1}>
+        <Text style={styles.date} numberOfLines={1}>
           {new Date(order.date).toDateString()}
         </Text>
-        <Text numberOfLines={1} style={styles.contact}>
+        <Text numberOfLines={1} style={styles.expectedObtained}>
           {order.expectedObtained}
         </Text>
       </View>

@@ -117,13 +117,13 @@ export const DataProvider: React.FC = ({ children }) => {
     <ApolloProvider client={client}>
       <SuppliersProvider>
         <OrdersProvider>
-          {/* <ProductsProvider>
-            <ClientsProvider>
+          <ProductsProvider>
+            {/* <ClientsProvider>
               <SalesProvider> */}
-          {children}
-          {/* </SalesProvider>
-            </ClientsProvider>
-          </ProductsProvider> */}
+            {children}
+            {/* </SalesProvider>
+              </ClientsProvider> */}
+          </ProductsProvider>
         </OrdersProvider>
       </SuppliersProvider>
     </ApolloProvider>

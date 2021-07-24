@@ -31,15 +31,15 @@ export const addProduct = gql`
     $purchasePrice: Int!
   ) {
     addProduct(
-      userId, $userId
-      orderId, $orderId
-      name, $name
-      char1, $char1
-      char2, $char2
-      initialStock, $initialStock
-      retailPrice, $retailPrice
-      wholesalePrice, $wholesalePrice
-      purchasePrice, $purchasePrice
+      userId: $userId
+      orderId: $orderId
+      name: $name
+      char1: $char1
+      char2: $char2
+      initialStock: $initialStock
+      retailPrice: $retailPrice
+      wholesalePrice: $wholesalePrice
+      purchasePrice: $purchasePrice
     ) {
       _id
       order {
@@ -69,15 +69,15 @@ export const updateProduct = gql`
     $purchasePrice: Int!
   ) {
     updateProduct(
-      _id, $_id
-      orderId, $orderId
-      name, $name
-      char1, $char1
-      char2, $char2
-      initialStock, $initialStock
-      retailPrice, $retailPrice
-      wholesalePrice, $wholesalePrice
-      purchasePrice, $purchasePrice
+      _id: $_id
+      orderId: $orderId
+      name: $name
+      char1: $char1
+      char2: $char2
+      initialStock: $initialStock
+      retailPrice: $retailPrice
+      wholesalePrice: $wholesalePrice
+      purchasePrice: $purchasePrice
     ) {
       _id
       order {
@@ -108,7 +108,6 @@ export const deleteProduct = gql`
       retailPrice
       wholesalePrice
       purchasePrice
-    }
     }
   }
 `;

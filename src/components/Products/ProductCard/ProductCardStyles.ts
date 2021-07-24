@@ -21,11 +21,11 @@ export const useStyles = makeStyles((theme) =>
       flex: 1,
       justifyContent: 'center',
     },
-    date: {
+    name: {
       fontSize: 22,
       color: theme.palette.text.button,
     },
-    expectedObtained: {
+    char1: {
       fontSize: 12,
       color: theme.palette.text.button,
     },
