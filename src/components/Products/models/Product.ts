@@ -1,6 +1,8 @@
 export interface Product {
   _id: string;
-  orderId: string;
+  order: {
+    _id: string;
+  };
   name: string;
   char1: string;
   char2: string;

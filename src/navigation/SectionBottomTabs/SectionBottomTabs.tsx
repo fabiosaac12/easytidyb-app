@@ -40,7 +40,7 @@ export const SectionBottomTabs = () => {
       }}
     >
       <Tab.Screen name="suppliers" component={SuppliersScreen} />
-      {suppliers.data?.length && (
+      {!!suppliers.data?.length && (
         <Tab.Screen name="orders" component={OrdersScreen} />
       )}
       {/* {orders.data?.length && (
