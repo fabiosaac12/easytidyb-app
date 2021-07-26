@@ -2,13 +2,17 @@ import { useFormik } from 'formik';
 import React, { FC, useEffect } from 'react';
 import { Button, Input, Text } from '../../Theme';
 import { useStyles } from './OrdersUpdateFormStyles';
-import * as yup from 'yup';
 import { useOrders } from '../context';
 import { useModal } from '../../Modal';
 import { useSuppliers } from '../../Suppliers';
 import { Select } from '../../Theme/components/Select';
 import { DatePicker } from '../../Theme/components/DatePicker';
-import { counterMapValues, mapValues } from './helpers';
+import {
+  counterMapValues,
+  mapValues,
+  initialValues,
+  validationSchema,
+} from './helpers';
 
 interface Props {
   orderId: string;
@@ -20,17 +24,8 @@ export const OrdersUpdateForm: FC<Props> = ({ orderId }) => {
   const styles = useStyles();
   const modal = useModal();
   const formik = useFormik({
-    initialValues: {
-      _id: orderId,
-      supplierId: '',
-      expectedObtained: '0',
-      date: new Date(),
-    },
-    validationSchema: yup.object({
-      supplierId: yup.string().required('Este campo es requerido'),
-      expectedObtained: yup.number().min(0).required('Este campo es requerido'),
-      date: yup.date().required('Este campo es requerido'),
-    }),
+    initialValues: { _id: orderId, ...initialValues },
+    validationSchema,
     onSubmit: (values) => {
       const mappedValues = mapValues(values);
 

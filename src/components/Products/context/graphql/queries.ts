@@ -26,9 +26,9 @@ export const addProduct = gql`
     $char1: String!
     $char2: String!
     $initialStock: Int!
-    $retailPrice: Int!
-    $wholesalePrice: Int!
-    $purchasePrice: Int!
+    $retailPrice: Float!
+    $wholesalePrice: Float!
+    $purchasePrice: Float!
   ) {
     addProduct(
       userId: $userId
@@ -64,9 +64,9 @@ export const updateProduct = gql`
     $char1: String!
     $char2: String!
     $initialStock: Int!
-    $retailPrice: Int!
-    $wholesalePrice: Int!
-    $purchasePrice: Int!
+    $retailPrice: Float!
+    $wholesalePrice: Float!
+    $purchasePrice: Float!
   ) {
     updateProduct(
       _id: $_id

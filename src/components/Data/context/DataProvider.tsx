@@ -91,12 +91,27 @@ export const DataProvider: React.FC = ({ children }) => {
           Query: {
             fields: {
               suppliers: {
-                merge(existing, incoming) {
+                merge(_existing, incoming) {
                   return incoming;
                 },
               },
               orders: {
-                merge(existing, incoming) {
+                merge(_existing, incoming) {
+                  return incoming;
+                },
+              },
+              products: {
+                merge(_existing, incoming) {
+                  return incoming;
+                },
+              },
+              clients: {
+                merge(_existing, incoming) {
+                  return incoming;
+                },
+              },
+              sales: {
+                merge(_existing, incoming) {
                   return incoming;
                 },
               },

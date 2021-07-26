@@ -34,10 +34,10 @@ export const OrdersDeleteModal: FC<Props> = ({ orderId }) => {
       <Button
         style={styles.cancelButton}
         color="secondary"
-        title="Cancelar"
+        title="CANCELAR"
         onPress={modal.handleHide}
       />
-      <Button color="primary" title="Aceptar" onPress={handleSubmit} />
+      <Button color="primary" title="ACEPTAR" onPress={handleSubmit} />
     </>
   );
 };

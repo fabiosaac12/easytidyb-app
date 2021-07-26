@@ -6,6 +6,8 @@ import { useModal } from '../../Modal';
 import { Text } from '../../Theme';
 import { Product } from '../models/Product';
 import { useStyles } from './ProductCardStyles';
+import { ProductsUpdateForm } from '../ProductsUpdateForm/ProductsUpdateForm';
+import { ProductsDeleteModal } from '../ProductsDeleteModal/ProductsDeleteModal';
 
 interface Props {
   product: Product;
@@ -29,10 +31,26 @@ export const ProductCard: FC<Props> = ({ product }) => {
         </Text>
       </View>
       <View style={styles.actionButtonsContainer}>
-        <TouchableOpacity activeOpacity={0.8} style={styles.actionButton}>
+        <TouchableOpacity
+          onPress={() =>
+            modal.handleOpen({
+              content: <ProductsUpdateForm productId={product._id} />,
+            })
+          }
+          activeOpacity={0.8}
+          style={styles.actionButton}
+        >
           <Icon name="edit" style={styles.editIcon} size={30} />
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.8} style={styles.actionButton}>
+        <TouchableOpacity
+          onPress={() =>
+            modal.handleOpen({
+              content: <ProductsDeleteModal productId={product._id} />,
+            })
+          }
+          activeOpacity={0.8}
+          style={styles.actionButton}
+        >
           <Icon name="delete" style={styles.deleteIcon} size={30} />
         </TouchableOpacity>
       </View>

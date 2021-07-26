@@ -1,37 +1,35 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useModal } from '../../Modal';
 import { Button, Text } from '../../Theme';
-import { Supplier } from '../models/Supplier';
-import { useSuppliers } from '../context/useSuppliers';
-import { useStyles } from './SuppliersDeleteModalStyles';
+import { Product } from '../models/Product';
+import { useProducts } from '../context/useProducts';
+import { useStyles } from './ProductsDeleteModalStyles';
 
 interface Props {
-  supplierId: string;
+  productId: string;
 }
 
-export const SuppliersDeleteModal: FC<Props> = ({ supplierId }) => {
+export const ProductsDeleteModal: FC<Props> = ({ productId }) => {
   const styles = useStyles();
-  const suppliers = useSuppliers();
+  const products = useProducts();
   const modal = useModal();
-  const [supplier, setSupplier] = useState<Supplier>();
+  const [product, setProduct] = useState<Product>();
 
   useEffect(() => {
-    const supplier = suppliers.data?.find(
-      (supplier) => supplier._id === supplierId,
-    );
+    const product = products.data?.find((product) => product._id === productId);
 
-    setSupplier(supplier);
+    setProduct(product);
   }, []);
 
   const handleSubmit = () => {
-    suppliers.delete(supplierId);
+    products.delete(productId);
     modal.handleHide();
   };
 
   return (
     <>
       <Text style={styles.title}>
-        Estas seguro de querer eliminar el proveedor {supplier?.name}
+        Estas seguro de querer eliminar el producto {product?.name}
       </Text>
       <Button
         style={styles.cancelButton}
