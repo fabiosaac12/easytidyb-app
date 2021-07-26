@@ -2,10 +2,10 @@ import { useFormik } from 'formik';
 import React, { FC, useEffect } from 'react';
 import { Button, Input, Text } from '../../Theme';
 import { useStyles } from './ClientsUpdateFormStyles';
-import * as yup from 'yup';
 import { useClients } from '../context';
 import { useModal } from '../../Modal';
 import { Client } from '../models/Client';
+import { initialValues, validationSchema } from './helpers';
 
 interface Props {
   clientId: string;
@@ -16,17 +16,8 @@ export const ClientsUpdateForm: FC<Props> = ({ clientId }) => {
   const styles = useStyles();
   const modal = useModal();
   const formik = useFormik<Client>({
-    initialValues: {
-      _id: clientId,
-      name: '',
-      location: '',
-      contact: '',
-    },
-    validationSchema: yup.object({
-      name: yup.string().required('Es requerido'),
-      location: yup.string(),
-      contact: yup.string(),
-    }),
+    initialValues: { ...initialValues, _id: clientId },
+    validationSchema,
     onSubmit: (params) => {
       clients.update(params);
       modal.handleHide();
@@ -34,9 +25,7 @@ export const ClientsUpdateForm: FC<Props> = ({ clientId }) => {
   });
 
   useEffect(() => {
-    const client = clients.data?.find(
-      (client) => client._id === clientId,
-    );
+    const client = clients.data?.find((client) => client._id === clientId);
 
     client && formik.setValues(client);
   }, []);

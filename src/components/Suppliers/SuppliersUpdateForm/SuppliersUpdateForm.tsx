@@ -2,10 +2,10 @@ import { useFormik } from 'formik';
 import React, { FC, useEffect } from 'react';
 import { Button, Input, Text } from '../../Theme';
 import { useStyles } from './SuppliersUpdateFormStyles';
-import * as yup from 'yup';
 import { useSuppliers } from '../context';
 import { useModal } from '../../Modal';
 import { Supplier } from '../models/Supplier';
+import { initialValues, validationSchema } from './helpers';
 
 interface Props {
   supplierId: string;
@@ -16,17 +16,8 @@ export const SuppliersUpdateForm: FC<Props> = ({ supplierId }) => {
   const styles = useStyles();
   const modal = useModal();
   const formik = useFormik<Supplier>({
-    initialValues: {
-      _id: supplierId,
-      name: '',
-      location: '',
-      contact: '',
-    },
-    validationSchema: yup.object({
-      name: yup.string().required('Es requerido'),
-      location: yup.string(),
-      contact: yup.string(),
-    }),
+    initialValues: { _id: supplierId, ...initialValues },
+    validationSchema,
     onSubmit: (params) => {
       suppliers.update(params);
       modal.handleHide();

@@ -2,25 +2,17 @@ import { useFormik } from 'formik';
 import React from 'react';
 import { Button, Input, Text } from '../../Theme';
 import { useStyles } from './ClientsAddFormStyles';
-import * as yup from 'yup';
 import { useClients } from '../context';
 import { useModal } from '../../Modal';
+import { initialValues, validationSchema } from './helpers';
 
 export const ClientsAddForm = () => {
   const clients = useClients();
   const styles = useStyles();
   const modal = useModal();
   const formik = useFormik({
-    initialValues: {
-      name: '',
-      location: '',
-      contact: '',
-    },
-    validationSchema: yup.object({
-      name: yup.string().required('Es requerido'),
-      location: yup.string(),
-      contact: yup.string(),
-    }),
+    initialValues,
+    validationSchema,
     onSubmit: (params) => {
       clients.add(params);
       modal.handleHide();

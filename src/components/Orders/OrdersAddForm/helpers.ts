@@ -1,3 +1,4 @@
+import * as yup from 'yup';
 import { OrderToAdd } from '../models/OrderToAdd';
 
 export const mapValues = (values: {
@@ -13,3 +14,15 @@ export const mapValues = (values: {
 
   return newValues;
 };
+
+export const initialValues = {
+  supplierId: '',
+  expectedObtained: '0',
+  date: new Date(),
+};
+
+export const validationSchema = yup.object({
+  supplierId: yup.string().required('Este campo es requerido'),
+  expectedObtained: yup.number().min(0).required('Este campo es requerido'),
+  date: yup.date().required('Este campo es requerido'),
+});
