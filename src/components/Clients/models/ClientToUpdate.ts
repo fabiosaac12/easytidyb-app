@@ -1,4 +1,4 @@
-export interface Client {
+export interface ClientToUpdate {
   _id: string;
   name: string;
   location?: string;

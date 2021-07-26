@@ -21,10 +21,10 @@ const Tab = createBottomTabNavigator<SectionBottomTabsProps>();
 export const SectionBottomTabs = () => {
   const styles = useStyles();
 
-  // const products = useProducts();
   // const clients = useClients();
   const suppliers = useSuppliers();
   const orders = useOrders();
+  const products = useProducts();
 
   return (
     <Tab.Navigator
@@ -47,10 +47,10 @@ export const SectionBottomTabs = () => {
       {!!orders.data?.length && (
         <Tab.Screen name="products" component={ProductsScreen} />
       )}
-      {/* {!!products.data?.length && (
+      {!!products.data?.length && (
         <Tab.Screen name="clients" component={ClientsScreen} />
       )}
-      {!!products.data?.length && !!clients.data?.length && (
+      {/* {!!products.data?.length && !!clients.data?.length && (
         <Tab.Screen name="sales" component={SalesScreen} />
       )} */}
     </Tab.Navigator>

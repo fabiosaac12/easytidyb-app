@@ -1,5 +1,4 @@
-export interface Client {
-  _id: string;
+export interface ClientToAdd {
   name: string;
   location?: string;
   contact?: string;

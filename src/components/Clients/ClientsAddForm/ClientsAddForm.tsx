@@ -1,13 +1,13 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import { Button, Input, Text } from '../../Theme';
-import { useStyles } from './SuppliersAddFormStyles';
+import { useStyles } from './ClientsAddFormStyles';
 import * as yup from 'yup';
-import { useSuppliers } from '../context';
+import { useClients } from '../context';
 import { useModal } from '../../Modal';
 
-export const SuppliersAddForm = () => {
-  const suppliers = useSuppliers();
+export const ClientsAddForm = () => {
+  const clients = useClients();
   const styles = useStyles();
   const modal = useModal();
   const formik = useFormik({
@@ -22,14 +22,14 @@ export const SuppliersAddForm = () => {
       contact: yup.string(),
     }),
     onSubmit: (params) => {
-      suppliers.add(params);
+      clients.add(params);
       modal.handleHide();
     },
   });
 
   return (
     <>
-      <Text style={styles.title}>Agregar un nuevo proveedor</Text>
+      <Text style={styles.title}>Agregar un nuevo cliente</Text>
       <Input
         keyboardType="default"
         autoCapitalize="none"

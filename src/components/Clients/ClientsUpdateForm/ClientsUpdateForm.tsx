@@ -1,17 +1,23 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { FC, useEffect } from 'react';
 import { Button, Input, Text } from '../../Theme';
-import { useStyles } from './SuppliersAddFormStyles';
+import { useStyles } from './ClientsUpdateFormStyles';
 import * as yup from 'yup';
-import { useSuppliers } from '../context';
+import { useClients } from '../context';
 import { useModal } from '../../Modal';
+import { Client } from '../models/Client';
 
-export const SuppliersAddForm = () => {
-  const suppliers = useSuppliers();
+interface Props {
+  clientId: string;
+}
+
+export const ClientsUpdateForm: FC<Props> = ({ clientId }) => {
+  const clients = useClients();
   const styles = useStyles();
   const modal = useModal();
-  const formik = useFormik({
+  const formik = useFormik<Client>({
     initialValues: {
+      _id: clientId,
       name: '',
       location: '',
       contact: '',
@@ -22,14 +28,22 @@ export const SuppliersAddForm = () => {
       contact: yup.string(),
     }),
     onSubmit: (params) => {
-      suppliers.add(params);
+      clients.update(params);
       modal.handleHide();
     },
   });
 
+  useEffect(() => {
+    const client = clients.data?.find(
+      (client) => client._id === clientId,
+    );
+
+    client && formik.setValues(client);
+  }, []);
+
   return (
     <>
-      <Text style={styles.title}>Agregar un nuevo proveedor</Text>
+      <Text style={styles.title}>Editar cliente {formik.values.name}</Text>
       <Input
         keyboardType="default"
         autoCapitalize="none"
@@ -57,7 +71,7 @@ export const SuppliersAddForm = () => {
         onChangeText={formik.setFieldValue.bind(null, 'contact')}
         value={formik.values.contact}
       />
-      <Button title="CREAR" color="primary" onPress={formik.handleSubmit} />
+      <Button title="EDITAR" color="primary" onPress={formik.handleSubmit} />
     </>
   );
 };

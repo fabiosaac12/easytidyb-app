@@ -48,7 +48,7 @@ export const SuppliersUpdateForm: FC<Props> = ({ supplierId }) => {
         keyboardType="default"
         autoCapitalize="none"
         spellCheck={false}
-        placeholder="Escribe el nombre proveedor"
+        placeholder="Escribe el nombre"
         label="Nombre"
         onChangeText={formik.setFieldValue.bind(null, 'name')}
         value={formik.values.name}
