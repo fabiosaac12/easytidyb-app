@@ -1,7 +1,13 @@
 import * as yup from 'yup';
 import { Order } from '../models/Order';
 import { OrderToUpdate } from '../models/OrderToUpdate';
-import { FormValues } from '../models/FormValues';
+
+interface FormValues {
+  _id: string;
+  supplierId: string;
+  expectedObtained: string;
+  date: Date;
+}
 
 export const initialValues = {
   supplierId: '',

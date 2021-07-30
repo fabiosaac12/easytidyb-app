@@ -4,14 +4,19 @@ import { useAuth } from '../../Auth';
 import { Product } from '../models/Product';
 import { ProductToAdd } from '../models/ProductToAdd';
 import { ProductToUpdate } from '../models/ProductToUpdate';
-import { getProducts, addProduct, deleteProduct, updateProduct } from './graphql/queries';
+import {
+  getProducts,
+  addProduct,
+  deleteProduct,
+  updateProduct,
+} from './graphql/queries';
 import { ProductsContext, ProductsContextProps } from './ProductsContext';
 
 export const ProductsProvider: React.FC = ({ children }) => {
   const { user } = useAuth();
   const { data, add, update, delete_ } = useSection<
-    Product, 
-    ProductToAdd, 
+    Product,
+    ProductToAdd,
     ProductToUpdate
   >('products', {
     getQuery: getProducts,
@@ -23,10 +28,10 @@ export const ProductsProvider: React.FC = ({ children }) => {
   const contextValue: ProductsContextProps = {
     data,
     add: (product) =>
-    user?._id && add({ variables: { userId: user._id, ...product } }),
+      user?._id && add({ variables: { userId: user._id, ...product } }),
     update: (product) => user?._id && update({ variables: product }),
-    delete:
-      (productId) => user?._id && delete_({ variables: { _id: productId } }),
+    delete: (productId) =>
+      user?._id && delete_({ variables: { _id: productId } }),
   };
 
   return (

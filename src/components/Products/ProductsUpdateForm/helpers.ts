@@ -1,7 +1,18 @@
 import * as yup from 'yup';
 import { ProductToUpdate } from '../models/ProductToUpdate';
 import { Product } from '../models/Product';
-import { FormValues } from '../models/FormValues';
+
+interface FormValues {
+  _id: string;
+  orderId: string;
+  name: string;
+  char1: string;
+  char2: string;
+  initialStock: string;
+  retailPrice: string;
+  wholesalePrice: string;
+  purchasePrice: string;
+}
 
 export const initialValues = {
   orderId: '',
