@@ -1,10 +1,11 @@
+import { SaleProduct } from './SaleProduct';
+
 export interface SaleToAdd {
-  productId: string;
   clientId: string;
-  quantity: number;
+  date: number;
+  type: string;
+  products: SaleProduct[];
   obtained: number;
   profit: number;
   discount: number;
-  type: string;
-  date: number;
 }

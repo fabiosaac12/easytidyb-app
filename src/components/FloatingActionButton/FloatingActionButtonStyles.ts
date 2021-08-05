@@ -14,13 +14,21 @@ export const useStyles = makeStyles((theme) =>
       bottom: 25,
       left: 25,
     },
+    tr: {
+      top: 60 + theme.spacing(2),
+      right: theme.spacing(2),
+    },
+    tl: {
+      top: 25,
+      left: 25,
+    },
     fab: {
       width: 60,
       height: 60,
       borderRadius: 30,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: theme.palette.primary[800],
+      backgroundColor: theme.palette.primary[600],
       ...theme.shadows[4],
     },
     icon: {

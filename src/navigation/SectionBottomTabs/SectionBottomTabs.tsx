@@ -1,12 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SalesScreen } from './../../components/Sales';
 import { ClientsScreen, useClients } from './../../components/Clients';
 import { ProductsScreen, useProducts } from './../../components/Products';
 import { OrdersScreen, useOrders } from './../../components/Orders';
 import { SuppliersScreen, useSuppliers } from './../../components/Suppliers';
 import { getTabBarIcon, getTabBarLabel } from './helpers';
 import { useStyles } from './SectionBottomTabsStyles';
+import { SalesStackNavigator } from '../../components/Sales/SalesNavigatorStack';
 
 export type SectionBottomTabsProps = {
   suppliers: undefined;
@@ -21,7 +21,7 @@ const Tab = createBottomTabNavigator<SectionBottomTabsProps>();
 export const SectionBottomTabs = () => {
   const styles = useStyles();
 
-  // const clients = useClients();
+  const clients = useClients();
   const suppliers = useSuppliers();
   const orders = useOrders();
   const products = useProducts();
@@ -50,9 +50,9 @@ export const SectionBottomTabs = () => {
       {!!products.data?.length && (
         <Tab.Screen name="clients" component={ClientsScreen} />
       )}
-      {/* {!!products.data?.length && !!clients.data?.length && (
-        <Tab.Screen name="sales" component={SalesScreen} />
-      )} */}
+      {!!products.data?.length && !!clients.data?.length && (
+        <Tab.Screen name="sales" component={SalesStackNavigator} />
+      )}
     </Tab.Navigator>
   );
 };

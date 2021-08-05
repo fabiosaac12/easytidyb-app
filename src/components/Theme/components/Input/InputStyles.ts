@@ -16,6 +16,14 @@ export const useStyles = makeStyles((theme) =>
       fontSize: 16,
       padding: 0,
     },
+    disabledLabel: {
+      color: theme.palette.greys[600],
+    },
+    disabledInput: {
+      color: theme.palette.greys[600],
+      fontSize: 16,
+      padding: 3,
+    },
     placeholder: {
       color: theme.palette.greys[500],
     },

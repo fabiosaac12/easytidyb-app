@@ -12,6 +12,7 @@ interface Props<T> {
   value: T;
   setValue: (value: T) => void;
   options: Option<T>[];
+  canSearch?: boolean;
 }
 
 export function OptionList<T>({
@@ -20,6 +21,7 @@ export function OptionList<T>({
   handleHide,
   setValue,
   value,
+  canSearch,
 }: Props<T>) {
   const styles = useStyles();
 
@@ -37,7 +39,7 @@ export function OptionList<T>({
     >
       <View style={styles.backdrop}>
         <View style={styles.container}>
-          <SearchInput placeholder="Buscar..." />
+          {canSearch && <SearchInput placeholder="Buscar..." />}
           <FlatList
             showsVerticalScrollIndicator={false}
             data={options}
@@ -63,9 +65,11 @@ export function OptionList<T>({
                   <Text style={styles.label} numberOfLines={1}>
                     {item.label}
                   </Text>
-                  <Text numberOfLines={1} style={styles.extra}>
-                    {item.extra}
-                  </Text>
+                  {!!item.extra && (
+                    <Text numberOfLines={1} style={styles.extra}>
+                      {item.extra}
+                    </Text>
+                  )}
                 </View>
               </TouchableOpacity>
             )}

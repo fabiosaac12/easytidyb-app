@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { useStyles } from './SnackbarStyles';
 import { useSnackbar } from './context';
 import { Text } from '../Theme';
+import { Modal } from 'react-native';
 
 export const Snackbar = () => {
   const styles = useStyles();
@@ -11,18 +12,31 @@ export const Snackbar = () => {
   useEffect(() => {
     let timeout: NodeJS.Timeout;
 
-    if (visible) timeout = setTimeout(handleHide, 5000);
+    if (visible) {
+      timeout = setTimeout(handleHide, 5000);
+    }
 
     return () => {
       timeout && clearTimeout(timeout);
     };
   }, [visible]);
 
-  if (!visible) return null;
-
   return (
-    <View style={[styles.container, styles[mode]]}>
-      <Text variant="button">{message}</Text>
-    </View>
+    <Modal
+      animationType="fade"
+      visible={visible}
+      transparent={true}
+      onRequestClose={handleHide}
+    >
+      <TouchableOpacity
+        activeOpacity={0.9}
+        onPress={handleHide}
+        style={styles.backdrop}
+      >
+        <View style={[styles.container, styles[mode]]}>
+          <Text variant="button">{message}</Text>
+        </View>
+      </TouchableOpacity>
+    </Modal>
   );
 };

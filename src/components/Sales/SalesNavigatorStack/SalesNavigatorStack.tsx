@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useStyles } from './SalesNavigatorStackStyles';
 import { Text } from '../../Theme';
@@ -12,7 +12,7 @@ export type SalesStackNavigatorProps = {
 
 const Stack = createStackNavigator<SalesStackNavigatorProps>();
 
-export const SalesStackNavigator = () => {
+export const SalesStackNavigator: FC = () => {
   const styles = useStyles();
 
   return (
@@ -28,6 +28,7 @@ export const SalesStackNavigator = () => {
         component={SalesAddForm}
         name="add"
         options={{
+          headerShown: false,
           headerTitle: () => <Text variant="title">Agregar una venta</Text>,
         }}
       />

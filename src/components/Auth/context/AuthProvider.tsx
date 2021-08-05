@@ -42,6 +42,7 @@ export const AuthProvider: React.FC = ({ children }) => {
           break;
         case 500:
           snackbar.handleShow('Ha ocurrido un error en el servidor', 'danger');
+          break;
         default:
           snackbar.handleShow('Ha ocurrido un error', 'danger');
       }
@@ -60,7 +61,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     login,
     logout,
     user,
-    state
+    state,
   };
 
   return (

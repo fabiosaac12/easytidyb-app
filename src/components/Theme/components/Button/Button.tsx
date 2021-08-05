@@ -19,7 +19,12 @@ export const Button: React.FC<Props> = ({
   return (
     <TouchableOpacity
       activeOpacity={0.6}
-      style={[styles.button, styles[color], style]}
+      style={[
+        styles.button,
+        styles[color],
+        style,
+        props.disabled && styles.disabled,
+      ]}
       {...props}
     >
       <Text variant="button">{title}</Text>

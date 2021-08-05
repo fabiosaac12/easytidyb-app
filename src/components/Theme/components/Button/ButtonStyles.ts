@@ -19,5 +19,8 @@ export const useStyles = makeStyles((theme) =>
     secondary: {
       backgroundColor: theme.palette.secondary[500],
     },
+    disabled: {
+      backgroundColor: theme.palette.greys[500],
+    },
   }),
 );

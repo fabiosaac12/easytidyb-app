@@ -3,6 +3,10 @@ import { makeStyles } from '../Theme';
 
 export const useStyles = makeStyles((theme) =>
   StyleSheet.create({
+    backdrop: {
+      flex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
     container: {
       elevation: 5,
       position: 'absolute',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Modal as RNModal } from 'react-native';
+import { Modal as RNModal, TouchableOpacity } from 'react-native';
 import { useModal } from './context';
 import { useStyles } from './ModalStyles';
 
@@ -14,9 +14,15 @@ export const Modal: React.FC = () => {
       visible={visible}
       onRequestClose={handleHide}
     >
-      <View style={styles.backdrop}>
-        <View style={styles.container}>{content}</View>
-      </View>
+      <TouchableOpacity
+        onPress={handleHide}
+        activeOpacity={0.9}
+        style={styles.backdrop}
+      >
+        <TouchableOpacity activeOpacity={1} style={styles.container}>
+          {content}
+        </TouchableOpacity>
+      </TouchableOpacity>
     </RNModal>
   );
 };

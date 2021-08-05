@@ -1,4 +1,4 @@
-import { makeStyles } from '../../components/Theme';
+import { makeStyles } from '../../Theme';
 
 export const useStyles = makeStyles((theme) => ({
   headerStyle: {

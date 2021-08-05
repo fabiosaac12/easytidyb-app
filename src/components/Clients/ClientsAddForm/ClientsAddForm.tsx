@@ -41,7 +41,7 @@ export const ClientsAddForm = () => {
         value={formik.values.location}
       />
       <Input
-        keyboardType="default"
+        keyboardType="phone-pad"
         autoCapitalize="none"
         spellCheck={false}
         placeholder="Escribe el numero telefonico"

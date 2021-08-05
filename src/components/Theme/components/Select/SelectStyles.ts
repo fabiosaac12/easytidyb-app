@@ -24,5 +24,8 @@ export const useStyles = makeStyles((theme) =>
       fontSize: 16,
       paddingTop: 3,
     },
+    disabled: {
+      color: theme.palette.greys[600],
+    },
   }),
 );

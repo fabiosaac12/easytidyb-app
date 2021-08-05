@@ -9,7 +9,9 @@ export const SnackbarProvider: React.FC = ({ children }) => {
 
   const handleHide = () => setVisible(false);
   const handleShow = (message: string, mode: AllowedModes = 'info') => {
-    if (!message) throw new Error("message can't be undefined");
+    if (!message) {
+      throw new Error("message can't be undefined");
+    }
 
     setMessage(message);
     setMode(mode);

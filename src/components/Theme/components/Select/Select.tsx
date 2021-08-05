@@ -11,6 +11,8 @@ interface Props<T> {
   placeholder: string;
   value: T;
   setValue: Dispatch<T>;
+  canSearch?: boolean;
+  disabled?: boolean;
 }
 
 export function Select<T>({
@@ -19,6 +21,8 @@ export function Select<T>({
   placeholder,
   value,
   setValue,
+  canSearch = true,
+  disabled = false,
 }: Props<T>) {
   const styles = useStyles();
   const [optionListVisible, setOptionListVisible] = useState(false);
@@ -35,14 +39,23 @@ export function Select<T>({
   return (
     <>
       <TouchableOpacity
+        disabled={disabled}
         style={[styles.container, selectedOption && styles.containerWithValue]}
         onPress={handleShowOptionList}
       >
-        <Text variant="body2" style={!selectedOption && styles.placeholder}>
+        <Text
+          variant="body2"
+          style={[
+            !selectedOption && styles.placeholder,
+            disabled && styles.disabled,
+          ]}
+        >
           {selectedOption ? label : placeholder}
         </Text>
         {selectedOption && (
-          <Text style={styles.value}>{selectedOption.label}</Text>
+          <Text style={[styles.value, disabled && styles.disabled]}>
+            {selectedOption.label}
+          </Text>
         )}
       </TouchableOpacity>
       {/* <Button
@@ -56,6 +69,7 @@ export function Select<T>({
         handleHide={handleHideOptionList}
         setValue={setValue}
         value={value}
+        canSearch={canSearch}
       />
     </>
   );

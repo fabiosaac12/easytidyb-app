@@ -10,6 +10,6 @@ export const useStyles = makeStyles((theme) =>
     },
     previousButton: {
       backgroundColor: theme.palette.background[900],
-    }
+    },
   }),
 );

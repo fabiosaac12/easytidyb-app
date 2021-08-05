@@ -1,17 +1,12 @@
+import { SaleProduct } from './SaleProduct';
+
 export interface Sale {
   _id: string;
-  product: {
-    _id: string;
-    name: string;
-  };
-  client: {
-    _id: string;
-    name: string;
-  };
-  quantity: number;
+  clientId: string;
+  date: number;
+  type: 'retail' | 'wholesale';
+  products: SaleProduct[];
   obtained: number;
   profit: number;
   discount: number;
-  type: string;
-  date: number;
 }

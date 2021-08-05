@@ -5,7 +5,7 @@ import { useStyles } from './FloatingActionButtonStyles';
 
 interface Props {
   iconName: string;
-  position: 'br' | 'bl';
+  position: 'br' | 'bl' | 'tl' | 'tr';
   onPress: () => void;
 }
 

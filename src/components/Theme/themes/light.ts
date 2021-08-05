@@ -47,7 +47,7 @@ export const light = {
       600: '#e8e8e8',
       700: '#e3e3e3',
       800: '#dedede',
-      900: '#d9d9d9',
+      900: '#c9c9c9',
     },
     contrast: {
       100: '#1c1c1c',
